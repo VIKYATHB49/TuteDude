@@ -11,7 +11,7 @@ https://github.com/VIKYATHB49/TuteDude
 - **Description:** Demonstrates the use of basic HTML tags to create a static webpage.
 #### Live project Link
 
-https://github.com/VIKYATHB49/TuteDude/Basic_HTML_Tags/index.html
+https://vikyathb49.github.io/TuteDude/Basic_HTML_Tags/index.html
 
 
 
