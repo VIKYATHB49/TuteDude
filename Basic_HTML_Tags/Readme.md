@@ -4,7 +4,7 @@ This project is a simple webpage that demonstrates the usage of basic HTML tags,
 ---
 ## Page Link
 ```bash
-  https://github.com/VIKYATHB49/TuteDude/Basic_HTML_Tags/index.html
+  https://vikyathb49.github.io/TuteDude/Basic_HTML_Tags/index.html
 ```
 
 
