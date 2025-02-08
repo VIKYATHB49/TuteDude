@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #errorMessages {
+            color: red;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #successMessage {
+            color: green;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form id="validationForm">
+            <div class="input-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit">Submit</button>
+            <div id="errorMessages"></div>
+            <div id="successMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#validationForm').submit(function(event) {
+                event.preventDefault();
+                $('#errorMessages').empty();
+                $('#successMessage').empty();
+                let errors = [];
+                const name = $('#name').val();
+                if (!name.trim()) {
+                    errors.push("Name is required.");
+                }
+                const email = $('#email').val();
+                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!email.trim()) {
+                    errors.push("Email is required.");
+                } else if (!emailRegex.test(email)) {
+                    errors.push("Please enter a valid email address.");
+                }
+                const password = $('#password').val();
+                if (!password.trim()) {
+                    errors.push("Password is required.");
+                } else if (password.length < 8) {
+                    errors.push("Password must be at least 8 characters long.");
+                }
+                const confirmPassword = $('#confirmPassword').val();
+                if (!confirmPassword.trim()) {
+                    errors.push("Please confirm your password.");
+                } else if (confirmPassword !== password) {
+                    errors.push("Passwords do not match.");
+                }
+                if (errors.length > 0) {
+                    let errorMessages = '';
+                    errors.forEach(function(error) {
+                        errorMessages += `<p>${error}</p>`;
+                    });
+                    $('#errorMessages').html(errorMessages);
+                } else {
+                    $('#successMessage').html('<p>Form submitted successfully!</p>');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

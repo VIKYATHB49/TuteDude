@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reaction Tester</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="alertBox" id="alertBox">
+        <h3 id="Head"></h3>
+        <p id="para"></p>
+        <button onclick="re()">Try Again</button>
+    </div>
+    
+    <div id="intro">
+        <h1>Reaction Tester</h1>
+        <p>Click the "Start" button to test your reaction time!</p>
+        <p>This game measures how quickly you can react when prompted. It's a fun way to test your reflexes and see how fast you can respond!</p>
+        
+        <h2>Rules and Regulations</h2>
+        <ul>
+            <li>Click the "Start" button to begin the test.</li>
+            <li>Wait for a random image of varying size and color to appear on the screen.</li>
+            <li>As soon as the image appears, click on it as fast as you can.</li>
+            <li>Delay in your click, Which increases the Reaction time.</li>
+            <li>Your reaction time will be displayed after the test.</li>
+            <li>Play in a distraction-free environment for accurate results.</li>
+        </ul>
+        
+        <h2>How the Game Works</h2>
+        <p>1. When you press "Start," a hidden timer will begin immediately.</p>
+        <p>2. An image of a random size and color will appear on the screen.</p>
+        <p>3. Click on the image as fast as possible to stop the timer and record your reaction time.</p>
+        <p>4. Try to improve your score or challenge your friends for the best reaction time!</p>
+        
+        <button id="startButton">Start</button>
+    </div> 
+    <div id="gameArea" style="display: none;"></div>
+    <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+    <script src="index.js"></script>
+</body>
+</html>
