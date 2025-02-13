@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skycast</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="navbar-brand">
+                <span class="logo">Skycast</span>
+            </div>
+            <div class="navbar-search">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search for a city" spellcheck="false">
+                    <ion-icon name="search-outline" id="search-button"></ion-icon>
+                </div>
+                <div id="auto-suggest" class="auto-suggest"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="weather-container">
+        <div class="temperature-wrapper">
+            <p class="temperature" id="temperature">--°C</p>
+            <button id="reload-button" class="reload-button">↻</button>
+        </div>
+        <p class="location" id="location">Loading...</p>
+        <p id="current-condition"></p>
+    </div>
+    <div class="additional-info">
+        <table class="sunrise-sunset-table">
+            <tr>
+                <th>Sunrise</th>
+                <th>Sunset</th>
+                <th>Humidity</th>
+            </tr>
+            <tr>
+                <td>
+                    <img id="sunrise" class="icon" src="./IMAGES/sunrise.png" alt="Sunrise Icon">
+                </td>
+                <td>
+                    <img id="sunset" class="icon" src="./IMAGES/sunset.png" alt="Sunset Icon">
+                </td>
+                <td>
+                    <img id="location" class="icon" src="./IMAGES/humidity.png" alt="humidity">
+                </td>
+            </tr>
+            <tr>
+                <td id="sunrise-time">-- : --</td>
+                <td id="sunset-time">-- : --</td>
+                <td id="humidity">--%</td>
+            </tr>
+        </table>
+        <table id="forecast-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temperature</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3">Loading forecast...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Skycast. All rights reserved.</p>
+            <p>Skycast: Your one-stop weather forecast app for accurate updates and insights.</p>
+            <div class="footer-links">
+                <a href="https://www.weather.gov/" target="_blank">Weather Alerts</a>
+                <a href="https://www.noaa.gov/" target="_blank">NOAA Resources</a>
+                <a href="https://www.climate.gov/" target="_blank">Climate Information</a>
+            </div>
+            <div class="social-media">
+                <p>Follow us:</p>
+                <a href="https://www.facebook.com/samavikyath6394/" target="_blank">
+                    <img src="./IMAGES/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://x.com/sama_vikyath" target="_blank">
+                    <img src="./IMAGES/twitter.png" alt="Twitter">
+                </a>
+                <a href="https://www.instagram.com/vikyath_reddy_sama/" target="_blank">
+                    <img src="./IMAGES/instagram.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="contact-info">
+                <p>Contact us: <a href="mailto:samavikyath06394@gmail.com">samavikyath06394@gmail.com</a></p>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
