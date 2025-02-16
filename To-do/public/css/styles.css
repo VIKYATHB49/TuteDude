@@ -1,0 +1,261 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+.task-container{
+display: flex;
+background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/Images/Background.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    align-items: center;
+   justify-content: center;
+}
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    width: 600px;
+    max-height: 90vh;
+    overflow: auto;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#taskForm {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#taskForm input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#taskForm button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#taskForm button:hover {
+    background-color: #218838;
+}
+
+#taskList, #completedList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.task-item input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.task-item input[type="text"] {
+    flex-grow: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.task-item .task-text {
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+.task-item .delete-btn {
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+    display: none; 
+    vertical-align: middle;
+}
+
+.task-item .delete-btn:hover {
+    text-decoration: underline;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.completed-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.completed-section h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    #taskForm {
+        flex-direction: column;
+        gap: 10px; /* Adds spacing between form elements */
+    }
+
+    #taskForm input[type="text"] {
+        width: 100%;
+        padding: 10px; /* Adds padding for better touch interaction */
+        box-sizing: border-box; /* Ensures padding is included in width */
+    }
+
+    #taskForm button {
+        width: 100%;
+        padding: 10px; /* Adds padding for better touch interaction */
+        font-size: 16px; /* Increases font size for better readability */
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px; /* Adds spacing between task item elements */
+    }
+
+    .task-item .delete-btn {
+        width: 100%; /* Makes the delete button full width */
+        text-align: center; /* Centers the text inside the button */
+        padding: 8px; /* Adds padding for better touch interaction */
+        font-size: 14px; /* Adjusts font size for better readability */
+    }
+
+    .task-item .task-text {
+        width: 100%; /* Ensures the task text takes full width */
+        word-break: break-word; /* Ensures long text doesn't overflow */
+    }
+}
+/* Footer Styles */
+.footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Changed from space-between to center */
+    align-items: flex-start; /* Better alignment for items of varying heights */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 0 1 auto; /* Changed from flex:1 to prevent growing */
+    min-width: 200px;
+    margin: 10px 0;
+}
+
+/* The rest of your existing styles remain the same */
+.footer-section h3,
+.footer-section h4 {
+    color: #f1c40f;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #f1c40f;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #ecf0f1;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #f1c40f;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #34495e;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-section {
+        margin: 0;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}

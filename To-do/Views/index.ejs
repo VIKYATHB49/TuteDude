@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+       
+        .task-text.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .delete-btn {
+            display: none; 
+            margin-left: auto;
+            color: #dc3545;
+            cursor: pointer;
+        }
+        .completed-section .delete-btn {
+            display: inline; 
+        }
+    </style>
+</head>
+<body>
+    <div class="task-container">
+        <div class="container">
+            <h1>Todo List</h1>
+            <form id="taskForm">
+                <input type="text" id="taskInput" placeholder="Enter task" required>
+                <button type="submit">Add Task</button>
+            </form>
+            <ul id="taskList"></ul>
+            <div class="completed-section">
+                <h2>Completed Tasks</h2>
+                <ul id="completedList"></ul>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+
+    <script>
+    
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTasks();
+        });
+
+        function renderTasks() {
+            const taskList = document.getElementById('taskList');
+            const completedList = document.getElementById('completedList');
+        
+            taskList.innerHTML = '';
+            completedList.innerHTML = '';
+
+            tasks.forEach(task => {
+                const taskElement = createTaskElement(task);
+                if (task.completed) {
+                    completedList.appendChild(taskElement);
+                } else {
+                    taskList.appendChild(taskElement);
+                }
+            });
+        }
+
+        function createTaskElement(task) {
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            li.dataset.taskId = task.id;
+
+            // Checkbox
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = task.completed;
+            checkbox.addEventListener('change', () => toggleTaskCompletion(task.id, checkbox.checked));
+            const taskText = document.createElement('span');
+            taskText.className = 'task-text';
+            taskText.textContent = task.text;
+            if (task.completed) {
+                taskText.classList.add('completed');
+            }
+            const editInput = document.createElement('input');
+            editInput.type = 'text';
+            editInput.className = 'edit-input';
+            editInput.value = task.text;
+            editInput.style.display = 'none';
+            const deleteBtn = document.createElement('span');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>'; // Font Awesome trash icon
+            deleteBtn.addEventListener('click', () => deleteTask(task.id));
+            taskText.addEventListener('click', () => {
+                taskText.style.display = 'none';
+                editInput.style.display = 'block';
+                editInput.focus();
+            });
+
+            editInput.addEventListener('blur', () => finishEditing(task.id, editInput));
+            editInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') finishEditing(task.id, editInput);
+            });
+
+            li.appendChild(checkbox);
+            li.appendChild(taskText);
+            li.appendChild(editInput);
+            li.appendChild(deleteBtn);
+
+            return li;
+        }
+
+        function finishEditing(taskId, editInput) {
+            const newText = editInput.value.trim();
+            if (!newText) return;
+
+            const task = tasks.find(t => t.id === taskId);
+            task.text = newText;
+            saveTasks();
+            renderTasks();
+        }
+
+        function deleteTask(taskId) {
+            tasks = tasks.filter(t => t.id !== taskId);
+            saveTasks();
+            renderTasks();
+        }
+
+        function toggleTaskCompletion(taskId, completed) {
+            const task = tasks.find(t => t.id === taskId);
+            task.completed = completed;
+            saveTasks();
+            renderTasks();
+        }
+        document.getElementById('taskForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const taskInput = document.getElementById('taskInput');
+            const text = taskInput.value.trim();
+
+            if (text) {
+                const newTask = {
+                    id: Date.now(),
+                    text: text,
+                    completed: false
+                };
+                
+                tasks.push(newTask);
+                saveTasks();
+                renderTasks();
+                taskInput.value = '';
+            }
+        });
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+    </script>
+</body>
+</html>
